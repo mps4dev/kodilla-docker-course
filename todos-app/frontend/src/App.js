@@ -57,76 +57,71 @@ function App() {
   }, []);
 
   return (
-    <div className="todoapp stack-large">
-      <h1>What to Todo</h1>
-      <form>
-        <h2 className="label-wrapper">
-          <label htmlFor="new-todo-input" className="label__lg">
-            What needs to be done?
-          </label>
-        </h2>
-        <input
-          type="text"
-          id="new-todo-input"
-          className="input input__lg"
-          name="text"
-          autoComplete="off"
-          onChange={(e) => {
-            setNewTodo(e.target.value);
-          }}
-          value={newTodo}
-        />
-        <button
-          type="submit"
-          className="btn btn__primary btn__lg"
-          onClick={handleClick}
-        >
-          Add
-        </button>
-      </form>
+      <div className="todoapp stack-large">
+        <h1>My TO-DOs List</h1>
+        <form>
+          <input
+              type="text"
+              id="new-todo-input"
+              className="input input__lg"
+              name="text"
+              autoComplete="off"
+              onChange={(e) => {
+                setNewTodo(e.target.value);
+              }}
+              value={newTodo}
+          />
+          <button
+              type="submit"
+              className="btn btn__primary btn__lg"
+              onClick={handleClick}
+          >
+            Add
+          </button>
+        </form>
 
-      {todos.length ? (
-        <h2 id="list-heading">
-          {todos.reduce((sum, todo) => {
-            if (todo.completed) return sum;
-            return sum + 1;
-          }, 0)}{" "}
-          tasks remaining
-        </h2>
-      ) : null}
-      <ul
-        role="list"
-        className="todo-list stack-large stack-exception"
-        aria-labelledby="list-heading"
-      >
-        {todos.map((todo, index) => (
-          <li className="todo stack-small">
-            <div className="c-cb">
-              <input
-                id="todo-0"
-                type="checkbox"
-                defaultChecked={todo.completed}
-                onChange={() => handleToggle(todo._id)}
-              />
-              <label className="todo-label" htmlFor="todo-0">
-                {todo.name}
-              </label>
-            </div>
-            <div className="btn-group">
-              <button
-                type="button"
-                className="btn btn__danger"
-                onClick={() => {
-                  handleDelete(todo._id, index);
-                }}
-              >
-                Delete <span className="visually-hidden">Eat</span>
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+        {todos.length ? (
+            <h2 id="list-heading">
+              {todos.reduce((sum, todo) => {
+                if (todo.completed) return sum;
+                return sum + 1;
+              }, 0)}{" "}
+              tasks remaining
+            </h2>
+        ) : null}
+        <ul
+            role="list"
+            className="todo-list stack-large stack-exception"
+            aria-labelledby="list-heading"
+        >
+          {todos.map((todo, index) => (
+              <li className="todo stack-small">
+                <div className="c-cb">
+                  <input
+                      id="todo-0"
+                      type="checkbox"
+                      defaultChecked={todo.completed}
+                      onChange={() => handleToggle(todo._id)}
+                  />
+                  <label className="todo-label" htmlFor="todo-0">
+                    {todo.name}
+                  </label>
+                </div>
+                <div className="btn-group">
+                  <button
+                      type="button"
+                      className="btn btn__danger"
+                      onClick={() => {
+                        handleDelete(todo._id, index);
+                      }}
+                  >
+                    Delete <span className="visually-hidden">Eat</span>
+                  </button>
+                </div>
+              </li>
+          ))}
+        </ul>
+      </div>
   );
 }
 
